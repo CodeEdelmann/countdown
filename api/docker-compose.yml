@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  api:
+    container_name: 'countdown-api'
+    build: .
+    command: gunicorn countdown.wsgi:application --bind 0.0.0.0:8000
+    env_file: local.env
+    environment:
+      - API_SECRET_KEY
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  db:
+    container_name: 'countdown-db'
+    image: postgres
+    env_file: local.env
