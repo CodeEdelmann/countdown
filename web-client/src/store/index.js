@@ -11,16 +11,26 @@ export default new Vuex.Store({
   state: {
     countdown_uuid: "",
     countdown_target: null,
+    error_message: "",
   },
   getters: {
     countdown_milliseconds(state) {
       return state.countdown_target == null ? 0 : state.countdown_target.diffNow().milliseconds
+    },
+    error_message(state) {
+      return state.error_message
     },
   },
   mutations: {
     set_countdown(state, countdown) {
       state.countdown_uuid = countdown.uuid
       state.countdown_target = DateTime.fromISO(countdown.countdown_target)
+    },
+    set_error_message(state, error) {
+      state.error_message = error.toString()
+    },
+    clear_error_message(state) {
+      state.error_message = ""
     },
   },
   actions: {
@@ -30,9 +40,8 @@ export default new Vuex.Store({
         .then(({data}) => {
           context.commit("set_countdown", data)
         })
-        .catch(({response}) => {
-          console.log("fetch error")
-          console.log(response)
+        .catch((error) => {
+          context.dispatch("set_error", error)
         })
     },
     create_countdown(context, payload) {
@@ -42,10 +51,16 @@ export default new Vuex.Store({
           context.commit("set_countdown", data)
           router.push({name: 'detail', params: { uuid: data.uuid }})
         })
-        .catch(({response}) => {
-          console.log("create error")
-          console.log(response)
+        .catch((error) => {
+          context.dispatch("set_error_message", error)
         })
+    },
+    set_error_message(context, payload) {
+      context.commit("set_error_message", payload)
+      setTimeout(function(){ context.dispatch("clear_error_message"); }, 3000)
+    },
+    clear_error_message(context) {
+      context.commit("clear_error_message")
     }
   },
 })

@@ -7,7 +7,7 @@ const CountdownApiService = {
     return axios
       .get(`countdown/countdowns/${slug}`)
       .catch((error) => {
-        throw new Error(`CountdownApiService ${error}`)
+        throw new Error(error.response.data.detail)
       })
   },
   post(target) {
@@ -16,7 +16,7 @@ const CountdownApiService = {
         countdown_target: target,
       })
       .catch((error) => {
-        throw new Error(`CountdownApiService ${error}`)
+        throw new Error(error.response.data.detail)
       })
   }
 }

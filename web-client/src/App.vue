@@ -1,8 +1,18 @@
 <template>
   <div id="app">
-    <!-- TODO Insert nav component (switch between form and detail) -->
-    <!-- TODO Insert error display component -->
-    <router-view/>
+    <!-- TODO Separate into Nav Component -->
+    <!-- TODO Simplify! -->
+    <router-link v-if="this.$router.currentRoute.name == 'detail'" :to="{name: 'form'}">
+      Create a new countdown
+    </router-link>
+    <router-link v-else-if="this.$router.currentRoute.name == 'form' && this.$store.state.countdown_uuid != ''" :to="{name: 'detail', params: {'uuid': this.$store.state.countdown_uuid}}">
+      Return to prior countdown
+    </router-link>
+    <!-- TODO Separate into ErrorMessage component -->
+    <div v-if="this.$store.getters.error_message">
+      {{ this.$store.getters.error_message }}
+    </div>
+    <router-view />
   </div>
 </template>
 

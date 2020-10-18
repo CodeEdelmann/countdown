@@ -1,10 +1,8 @@
 <template>
   <div class="countdown-detail">
-    {{ path }}
-    <br>
     <countdown :time="countdown_milliseconds" :interval="100">
       <template slot-scope="props">
-        {{props.days}} days {{props.hours}} hours {{props.minutes}} minutes {{props.seconds}} seconds
+        {{props.days}} days {{props.hours}} hours {{props.minutes}} minutes {{props.seconds}} seconds remaining!
       </template>
     </countdown>
   </div>
@@ -18,11 +16,6 @@ export default {
   name: 'CountdownDetail',
   components: {
     'countdown': VueCountdown,
-  },
-  data: function() {
-    return {
-      path: location.toString(),
-    }
   },
   computed: {...mapGetters(['countdown_milliseconds'])},
   mounted () {
