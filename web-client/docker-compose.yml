@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  web:
+    container_name: 'countdown-web'
+    build: .
+    environment:
+      - VUE_APP_API_BASE_URL
+    ports:
+      - "8080:8080"

@@ -8,12 +8,12 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Countdown Form',
+    name: 'form',
     component: CountdownForm
   },
   {
     path: '/:uuid',
-    name: 'Countdown Detail',
+    name: 'detail',
     component: CountdownDetail,
   }
 ]

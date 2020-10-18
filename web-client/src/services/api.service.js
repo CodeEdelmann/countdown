@@ -1,9 +1,8 @@
 import axios from 'axios'
 
+axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL
+
 const CountdownApiService = {
-  init () {
-    axios.defaults.baseURL = "http://localhost:8888" // TODO Make environment variable based setting
-  },
   get(slug='') {
     return axios
       .get(`countdown/countdowns/${slug}`)
@@ -13,7 +12,7 @@ const CountdownApiService = {
   },
   post(target) {
     return axios
-      .post(`countdown/countdowns`, {
+      .post(`countdown/countdowns/`, {
         countdown_target: target,
       })
       .catch((error) => {
