@@ -4,14 +4,14 @@ services:
   api:
     container_name: 'countdown-api'
     build: .
-    command: gunicorn countdown.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn countdown.wsgi:application --bind 0.0.0.0:8888
     env_file: local.env
     environment:
       - API_SECRET_KEY
     volumes:
       - .:/code
     ports:
-      - "8000:8000"
+      - "8888:8888"
     depends_on:
       - db
   db:
