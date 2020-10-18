@@ -1,24 +1,13 @@
-# web-client
+# Countdown Web Client
 
-## Project setup
-```
-npm install
-```
+This is the Vue.JS portion of the Countdown project.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+# Quick Setup
 
-### Compiles and minifies for production
-```
-npm run build
-```
+ - `cd` into this directory
+ - Run `make build`
+ - Run `make start`
 
-### Lints and fixes files
-```
-npm run lint
-```
+At this point, the client can be used. When done, please use the below command to stop the client and remove its container.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+ - Run `make stop`
