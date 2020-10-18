@@ -4,9 +4,6 @@ This is the Django Rest Framework portion of the Countdown project.
 
 # Quick Setup
 
-Perform the below steps for first-time configuration
-This will build and start the containers in detached mode, then apply the required migrations
-
  - `cd` into this directory
  - Run `make build`
  - Run `make start`
